@@ -19,14 +19,6 @@ const qs = require('querystring');
 //   }
 // });
 
-function findAnimals(animals, letter) {
-  return animals
-            .split('\n')
-            .filter( animal => animal.startsWith(letter) )
-            // .filter( animal => animal[0] == animalLetter )
-            .join('\n');
-}
-
 // function writeToFile(letter, data) {
 //   fs.writeFile(`${letter.toLowerCase()}_animals.txt`, data, err => {
 //     if (err) {
@@ -36,6 +28,14 @@ function findAnimals(animals, letter) {
 //     }
 //   });
 // }
+
+function findAnimals(animals, letter) {
+  return animals
+  .split('\n')
+  .filter( animal => animal.startsWith(letter) )
+  // .filter( animal => animal[0] == animalLetter )
+  .join('\n');
+}
 
 const server = http.createServer((req, res) => {
   const query = req.url.split('?')[1];
@@ -63,7 +63,7 @@ const server = http.createServer((req, res) => {
       });
     }
 
-    res.end("");
+    res.end(cache['animals']);
   } else {
     if (cache['animals'] !== undefined) {
       res.end(cache['animals']);

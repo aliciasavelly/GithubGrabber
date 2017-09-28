@@ -1,0 +1,24 @@
+{
+  "name": "GithubGrabberNode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "animal_fun.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon more_animals.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliciasavelly/GithubGrabber.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aliciasavelly/GithubGrabber/issues"
+  },
+  "homepage": "https://github.com/aliciasavelly/GithubGrabber#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

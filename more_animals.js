@@ -38,19 +38,17 @@ function findAnimals(animals, letter) {
 // }
 
 const server = http.createServer((req, res) => {
-  // res.write('hello world');
-  // res.end();
   const query = req.url.split('?')[1];
-  // console.log(req.url);
-  // console.log(query);
+
+  // this is when we have something like '/?letter=b' in our url
   if (query !== undefined) {
     let animalLetter = qs.parse(query).letter;
-    // console.log(animalLetter);
 
+    // we'll only look up the information for the letter if it hasn't been found yet
     if (cache[animalLetter] !== undefined) {
       res.end(cache[animalLetter]);
+      return;
     }
-
     if (animalLetter !== undefined) {
       fs.readFile('./animals.txt', 'utf-8', (err, data) => {
         if (err) {
@@ -58,34 +56,27 @@ const server = http.createServer((req, res) => {
           res.end('error');
           return;
         }
-        console.log(data);
-        console.log(animalLetter);
         let animalData = findAnimals(data, animalLetter.toUpperCase());
 
         cache[animalLetter] = animalData;
         res.end(animalData);
       });
     }
-    // res.end(animalLetter);
 
+    res.end("");
   } else {
     if (cache['animals'] !== undefined) {
-      console.log("here");
       res.end(cache['animals']);
       return;
     }
 
     fs.readFile('./animals.txt', 'utf-8', (err, data) => {
-      console.log("and here");
       if (err) {
         console.log(err);
         res.end('error');
         return;
       }
-      // animalData = findAnimals(data, animalLetter);
-      // if (animalLetter) {
-      //   writeToFile(animalLetter, animalData);
-      // }
+
       cache['animals'] = data;
       res.end(data);
     });

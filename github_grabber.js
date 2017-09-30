@@ -32,9 +32,9 @@ const githubServer = http.createServer((req, res) => {
       });
     });
 
-    res.end("I'm a post request!");
+    res.end("I'm a POST request!");
   } else {
-    res.end("Danger, not a post request!");
+    res.end("Danger, not a POST request!");
   }
 });
 
